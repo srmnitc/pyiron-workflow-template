@@ -5,6 +5,8 @@ python .ci_support/pyironconfig.py
 # install
 bash binder/postBuild
 
+# conda install papermill
+conda install -c conda-forge papermill
 
 # execute notebooks
 current_dir=$(pwd)

@@ -1,11 +1,11 @@
 # install dataset
-for ds in $(ls datasets/*.tar.gz); do 
-    cp datasets/${ds} .
-    cp datasets/export.csv .
+for ds in $(ls calculation/*.tar.gz); do 
+    cp ${ds} .
+    cp calculation/export.csv .
     file=$(basename ${ds} .tar.gz)
     python << EOF
 from pyiron import Project
-Project("datasets").unpack("${file}")
+Project("calculation").unpack("${file}")
 EOF
     rm ${ds}
     rm export.csv
