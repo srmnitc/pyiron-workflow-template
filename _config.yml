@@ -1,6 +1,6 @@
 title: pyiron-publication-template
 author: Jan Janssen
-logo: images/logo_dark.png
+logo: website/images/logo_dark.png
 
 execute:
   execute_notebooks           : off
