@@ -4,7 +4,7 @@ for ds in $(ls calculation/*.tar.gz); do
     cp calculation/export.csv .
     file=$(basename ${ds} .tar.gz)
     python << EOF
-from pyiron import Project
+from pyiron_base import Project
 Project("calculation").unpack("${file}")
 EOF
     rm ${ds}
