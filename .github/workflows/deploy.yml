@@ -17,7 +17,7 @@ jobs:
       with:
         auto-update-conda: true
         python-version: 3.8
-        environment-file: .ci_support/environment.yml
+        environment-file: .github/ci_support/environment.yml
         auto-activate-base: false
     - name: Install Jupyterbook
       shell: bash -l {0}
