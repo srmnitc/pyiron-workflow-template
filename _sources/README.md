@@ -47,7 +47,9 @@ The resulting files `export.csv` and `save.tar.gz` have been copied to the `calc
 Just like the pyiron resources folder this folder can include additional resources like links to special executables or additional parameter files. In this example the `resources` folder contains a special LAMMPS potential named `Si-quip-xml` which is required for the current notebook. 
 
 ### jupyterbook 
-The website for the repository is generated using jupyter book. It is configured with the config file `_config.yml`. Finally additional images for the jupyterbook can be stored in `website/images`. In this example case the `website/images` folder contains the dark pyiron logo `website/images/logo_dark.png`. The jupyterbook is build using the github action `.github/workflows/book.yml` and it is deployed to github pages using `.github/workflows/deploy.yml`. Both github actions internally use the conda environment defined in `.github/ci_support/environment.yml`. But there should be no need to modify these files, only the `_config.yml` has to be adjusted by the user. Example `_config.yml` file:
+The website for the repository is generated using jupyter book. It is configured with the config file `_config.yml` and additional images for the jupyterbook can be stored in `website/images` folder. In this example case the `website/images` folder contains the dark pyiron logo `website/images/logo_dark.png`. 
+
+The jupyterbook is build using the github action `.github/workflows/book.yml` and it is deployed to github pages using `.github/workflows/deploy.yml`. Both github actions internally use the conda environment defined in `.github/ci_support/environment.yml`. But there should be no need to modify these files, only the `_config.yml` has to be adjusted by the user. Example `_config.yml` file:
 
 ```
 title: pyiron-publication-template
@@ -70,7 +72,7 @@ launch_buttons:
 ```
 
 ### mybinder
-Besides the conda environment in `binder/environment.yml` the `binder/postBuild` script is used to import the calculations stored in `calculation` and install `NGLview` for both jupyter notebooks and jupyter lab. Finally the pyiron environment on mybinder is configured using the `binder/.pyiron` file in this repository.
+Besides the conda environment in `binder/environment.yml` the `binder/postBuild` script is used to import the calculations stored in `calculation` and install `NGLview` for both jupyter notebooks and jupyter lab. Finally the pyiron environment on mybinder is configured using the `binder/.pyiron` file in this repository. Only the conda environment in `binder/environment.yml` has to be updated by the user.
 
 ### continous integration 
-The rest of the files in the repository are used to test the environment. For continous integration the github actions are defined in `.github/workflows/notebooks.yml`. Again the mybinder environment `binder/environment.yml` to install all the dependencies, afterwards pyiron is configured in the test environment using `.github/ci_support/pyironconfig.py` and finally the notebooks are executed using `.github/ci_support/build_notebooks.sh`. Usually there is no need for the user to adjust any of these files other than the mybinder environment `binder/environment.yml`.
+The rest of the files in the repository are used to test the environment. For continous integration the github actions are defined in `.github/workflows/notebooks.yml`. Again the conda environment `binder/environment.yml` is used to install all the dependencies, afterwards pyiron is configured in the test environment using `.github/ci_support/pyironconfig.py` and finally the notebooks are executed using `.github/ci_support/build_notebooks.sh`. Usually there is no need for the user to adjust any of these files other than the conda environment `binder/environment.yml`.
