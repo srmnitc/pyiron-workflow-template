@@ -36,3 +36,9 @@ Besides the conda environment in `binder/environment.yml` the `binder/postBuild`
 
 ### continous integration 
 The rest of the files in the repository are used to test the environment. For continous integration the github actions are defined in `.github/workflows/notebooks.yml`. Again the mybinder environment `binder/environment.yml` to install all the dependencies, afterwards pyiron is configured in the test environment using `.github/ci_support/pyironconfig.py` and finally the notebooks are executed using `.github/ci_support/build_notebooks.sh`. Usually there is no need for the user to adjust any of these files other than the mybinder environment `binder/environment.yml`.
+
+## Step by step
+ * Move your notebooks to the `notebooks` folder and remove the example notebook `notebooks/example.ipynb`.
+ * Update the `environment.yml` file with the conda dependencies required for your notebook. 
+ * Include the export of your pyiron database in the `calculation` folder or in case no calculation are required you can remove the `save.tar.gz` archive and the `export.csv` database backup file. 
+ * Include additional pyiron resources in the `resources` folder if required, otherwise the `resources folder can be deleted.
