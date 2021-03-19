@@ -24,6 +24,8 @@ jobs:
       shell: bash -l {0}
       run: |
         pip install git+https://github.com/ExecutableBookProject/jupyter-book
+        echo "- file: README.md" > _toc.yml
+        for f in $(ls notebooks/*.ipynb); do echo "- file: ${f}" >> _toc.yml; done
         jupyter-book build . --path-output public
     - run: mv public/_build/html public_html
     - run: touch public_html/.nojekyll
