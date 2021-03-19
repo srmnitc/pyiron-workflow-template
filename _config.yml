@@ -9,7 +9,7 @@ html:
     extra_navbar              : Powered by <a href="https://pyiron.org">pyiron</a>
 
 repository:
-    url                       : https://github.com/jan-janssen/pyiron-publication-template
+    url                       : https://github.com/pyiron/pyiron-publication-template
     path_to_book              : ""
 
 launch_buttons:
