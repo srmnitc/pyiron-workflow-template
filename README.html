@@ -168,6 +168,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#step-by-step">
+   Step by step
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#repository-structure">
    Repository structure
   </a>
@@ -209,11 +214,6 @@
    </li>
   </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#step-by-step">
-   Step by step
-  </a>
- </li>
 </ul>
 
         </nav>
@@ -230,19 +230,39 @@
 <h1>pyiron publication template<a class="headerlink" href="#pyiron-publication-template" title="Permalink to this headline">¶</a></h1>
 <p>This is a template repository how you can publish your calculation with pyiron. It consists of the repository <a class="reference external" href="https://github.com/pyiron/pyiron-publication-template">itself</a>, a small <a class="reference external" href="http://pyiron.org/pyiron-publication-template/">website</a> created with Jupyterbook and a <a class="reference external" href="https://mybinder.org/v2/gh/pyiron/pyiron-publication-template/HEAD?filepath=notebooks%2Fexample.ipynb">mybinder environment</a> for testing the calculation.</p>
 <p>You can fork this repository and populate it with your own data.</p>
+<div class="section" id="step-by-step">
+<h2>Step by step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Move your notebooks to the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder and remove the example notebook <code class="docutils literal notranslate"><span class="pre">notebooks/example.ipynb</span></code>.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">binder/environment.yml</span></code> file with the conda dependencies required for your notebook.</p></li>
+<li><p>Include the export of your pyiron database in the <code class="docutils literal notranslate"><span class="pre">calculation</span></code> folder or in case no calculation are required you can remove the <code class="docutils literal notranslate"><span class="pre">calculation/save.tar.gz</span></code> archive and the <code class="docutils literal notranslate"><span class="pre">calculation/export.csv</span></code> database backup file.</p></li>
+<li><p>Include additional pyiron resources in the <code class="docutils literal notranslate"><span class="pre">resources</span></code> folder if required, otherwise the <code class="docutils literal notranslate"><span class="pre">resources</span></code> folder can be deleted.</p></li>
+<li><p>Finally the website configuration file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> has to be updated to include the repository name, author name and link to the website.</p></li>
+</ul>
+</div>
 <div class="section" id="repository-structure">
 <h2>Repository structure<a class="headerlink" href="#repository-structure" title="Permalink to this headline">¶</a></h2>
+<p>In the following the repsoitory structure is explained in more detail:</p>
 <div class="section" id="notebooks">
 <h3>notebooks<a class="headerlink" href="#notebooks" title="Permalink to this headline">¶</a></h3>
-<p>The notebooks folder contains one or more jupyter notebooks. These notebooks are executed during the unit tests and included in the website for easy readablity.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder contains one or more jupyter notebooks. These notebooks are executed during the unit tests and included in the website for easy readablity. The example notebook <code class="docutils literal notranslate"><span class="pre">notebooks/example.ipynb</span></code> can be removed.</p>
 </div>
 <div class="section" id="conda-environment">
 <h3>conda environment<a class="headerlink" href="#conda-environment" title="Permalink to this headline">¶</a></h3>
-<p>The binder folder includes the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file which defines the conda environment required to execute the notebooks in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder. An existing environment can be exported using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">&gt;</span> <span class="pre">environment.yml</span></code> but it is recommended to reduce the environment to the minimal requirements as a large environment is less performant.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">binder</span></code> folder includes the <code class="docutils literal notranslate"><span class="pre">binder/environment.yml</span></code> file which defines the conda environment required to execute the notebooks in the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder. An existing environment can be exported using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">env</span> <span class="pre">export</span> <span class="pre">&gt;</span> <span class="pre">environment.yml</span></code> but it is recommended to reduce the environment to the minimal requirements as a large environment is less performant. Example <code class="docutils literal notranslate"><span class="pre">binder/environment.yml</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">channels</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+<span class="n">dependencies</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">python</span>
+<span class="o">-</span> <span class="n">pyiron_atomistics</span> <span class="o">=</span><span class="mf">0.2</span><span class="o">.</span><span class="mi">8</span>
+<span class="o">-</span> <span class="n">lammps</span> <span class="o">=</span><span class="mf">2021.02</span><span class="o">.</span><span class="mi">10</span><span class="o">=*</span><span class="n">openmpi</span><span class="o">*</span><span class="n">_4</span>
+<span class="o">-</span> <span class="n">nglview</span> <span class="o">=</span><span class="mf">2.7</span><span class="o">.</span><span class="mi">7</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="calculation">
 <h3>calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">calculation</span></code> folder includes previous calculation results which are published with in this repository. In this example the calculation were created using:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">calculation</span></code> folder includes previous calculation results which are published with in this repository. In this example the calculation were calculated and exported using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyiron_atomistics</span> <span class="kn">import</span> <span class="n">Project</span>
 <span class="n">pr</span> <span class="o">=</span> <span class="n">Project</span><span class="p">(</span><span class="s2">&quot;old_calculation&quot;</span><span class="p">)</span>
 <span class="n">job</span> <span class="o">=</span> <span class="n">pr</span><span class="o">.</span><span class="n">create</span><span class="o">.</span><span class="n">job</span><span class="o">.</span><span class="n">Lammps</span><span class="p">(</span><span class="n">job_name</span><span class="o">=</span><span class="s2">&quot;lmp_si&quot;</span><span class="p">)</span>
@@ -251,15 +271,34 @@
 <span class="n">pr</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">destination_path</span><span class="o">=</span><span class="s2">&quot;save&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The resulting files <code class="docutils literal notranslate"><span class="pre">export.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">save.tar.gz</span></code> have been copied to the calculation repository.</p>
+<p>The resulting files <code class="docutils literal notranslate"><span class="pre">export.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">save.tar.gz</span></code> have been copied to the <code class="docutils literal notranslate"><span class="pre">calculation</span></code> folder.</p>
 </div>
 <div class="section" id="resources">
 <h3>resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
-<p>Just like the pyiron resources folder this folder can include additional resources like links to special executables or additional parameter files. In this example the resource directory contains a special LAMMPS potential named <code class="docutils literal notranslate"><span class="pre">Si-quip-xml</span></code> which is required for the current notebook.</p>
+<p>Just like the pyiron resources folder this folder can include additional resources like links to special executables or additional parameter files. In this example the <code class="docutils literal notranslate"><span class="pre">resources</span></code> folder contains a special LAMMPS potential named <code class="docutils literal notranslate"><span class="pre">Si-quip-xml</span></code> which is required for the current notebook.</p>
 </div>
 <div class="section" id="jupyterbook">
 <h3>jupyterbook<a class="headerlink" href="#jupyterbook" title="Permalink to this headline">¶</a></h3>
-<p>The website for the repository is generated using jupyter book. It is configured with the config file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>. Finally additional images for the jupyterbook can be stored in <code class="docutils literal notranslate"><span class="pre">website/images</span></code>. In this example case the <code class="docutils literal notranslate"><span class="pre">images</span></code> folder contains the dark pyiron logo <code class="docutils literal notranslate"><span class="pre">logo_dark.png</span></code>. The jupyterbook is build using the github action <code class="docutils literal notranslate"><span class="pre">.github/workflows/book.yml</span></code> and it is deployed to github pages using <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy.yml</span></code>. Both github actions internally use the conda environment defined in <code class="docutils literal notranslate"><span class="pre">.github/ci_support/environment.yml</span></code>. But there should be no need to modify these files, only the <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> has to be adjusted by the user.</p>
+<p>The website for the repository is generated using jupyter book. It is configured with the config file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>. Finally additional images for the jupyterbook can be stored in <code class="docutils literal notranslate"><span class="pre">website/images</span></code>. In this example case the <code class="docutils literal notranslate"><span class="pre">website/images</span></code> folder contains the dark pyiron logo <code class="docutils literal notranslate"><span class="pre">website/images/logo_dark.png</span></code>. The jupyterbook is build using the github action <code class="docutils literal notranslate"><span class="pre">.github/workflows/book.yml</span></code> and it is deployed to github pages using <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy.yml</span></code>. Both github actions internally use the conda environment defined in <code class="docutils literal notranslate"><span class="pre">.github/ci_support/environment.yml</span></code>. But there should be no need to modify these files, only the <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> has to be adjusted by the user. Example <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">title</span><span class="p">:</span> <span class="n">pyiron</span><span class="o">-</span><span class="n">publication</span><span class="o">-</span><span class="n">template</span>
+<span class="n">author</span><span class="p">:</span> <span class="n">Jan</span> <span class="n">Janssen</span>
+<span class="n">logo</span><span class="p">:</span> <span class="n">website</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">logo_dark</span><span class="o">.</span><span class="n">png</span>
+
+<span class="n">execute</span><span class="p">:</span>
+  <span class="n">execute_notebooks</span>           <span class="p">:</span> <span class="n">off</span>
+
+<span class="n">html</span><span class="p">:</span>
+    <span class="n">extra_navbar</span>              <span class="p">:</span> <span class="n">Powered</span> <span class="n">by</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://pyiron.org&quot;</span><span class="o">&gt;</span><span class="n">pyiron</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+
+<span class="n">repository</span><span class="p">:</span>
+    <span class="n">url</span>                       <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyiron</span><span class="o">/</span><span class="n">pyiron</span><span class="o">-</span><span class="n">publication</span><span class="o">-</span><span class="n">template</span>
+    <span class="n">path_to_book</span>              <span class="p">:</span> <span class="s2">&quot;&quot;</span>
+
+<span class="n">launch_buttons</span><span class="p">:</span>
+  <span class="n">notebook_interface</span>          <span class="p">:</span> <span class="n">jupyterlab</span>
+  <span class="n">binderhub_url</span>               <span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mybinder</span><span class="o">.</span><span class="n">org</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="mybinder">
 <h3>mybinder<a class="headerlink" href="#mybinder" title="Permalink to this headline">¶</a></h3>
@@ -268,18 +307,8 @@
 <div class="section" id="continous-integration">
 <h3>continous integration<a class="headerlink" href="#continous-integration" title="Permalink to this headline">¶</a></h3>
 <p>The rest of the files in the repository are used to test the environment. For continous integration the github actions are defined in <code class="docutils literal notranslate"><span class="pre">.github/workflows/notebooks.yml</span></code>. Again the mybinder environment <code class="docutils literal notranslate"><span class="pre">binder/environment.yml</span></code> to install all the dependencies, afterwards pyiron is configured in the test environment using <code class="docutils literal notranslate"><span class="pre">.github/ci_support/pyironconfig.py</span></code> and finally the notebooks are executed using <code class="docutils literal notranslate"><span class="pre">.github/ci_support/build_notebooks.sh</span></code>. Usually there is no need for the user to adjust any of these files other than the mybinder environment <code class="docutils literal notranslate"><span class="pre">binder/environment.yml</span></code>.</p>
-</div>
-</div>
-<div class="section" id="step-by-step">
-<h2>Step by step<a class="headerlink" href="#step-by-step" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Move your notebooks to the <code class="docutils literal notranslate"><span class="pre">notebooks</span></code> folder and remove the example notebook <code class="docutils literal notranslate"><span class="pre">notebooks/example.ipynb</span></code>.</p></li>
-<li><p>Update the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file with the conda dependencies required for your notebook.</p></li>
-<li><p>Include the export of your pyiron database in the <code class="docutils literal notranslate"><span class="pre">calculation</span></code> folder or in case no calculation are required you can remove the <code class="docutils literal notranslate"><span class="pre">save.tar.gz</span></code> archive and the <code class="docutils literal notranslate"><span class="pre">export.csv</span></code> database backup file.</p></li>
-<li><p>Include additional pyiron resources in the <code class="docutils literal notranslate"><span class="pre">resources</span></code> folder if required, otherwise the `resources folder can be deleted.</p></li>
-<li><p>Finally you can update the website configuration file <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> to include the repository name, author and link to the website.</p></li>
-</ul>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 </div>
