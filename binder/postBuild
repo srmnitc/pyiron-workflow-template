@@ -1,3 +1,6 @@
+# move pyiron config to home directory 
+mv binder/.pyiron .
+
 # install dataset
 for ds in $(ls calculation/*.tar.gz); do 
     cp ${ds} .
@@ -10,9 +13,6 @@ EOF
     rm ${ds}
     rm export.csv
 done
-
-# move pyiron config to home directory 
-mv binder/.pyiron .
 
 # ngl view for jupyter
 jupyter nbextension install nglview --py --sys-prefix
