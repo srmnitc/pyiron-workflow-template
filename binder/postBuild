@@ -11,6 +11,9 @@ EOF
     rm export.csv
 done
 
+# move pyiron config to home directory 
+mv binder/.pyiron .
+
 # ngl view for jupyter
 jupyter nbextension install nglview --py --sys-prefix
 jupyter nbextension enable nglview --py --sys-prefix
