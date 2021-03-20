@@ -1,6 +1,6 @@
 #!/bin/bash
 cat << EOF > _config.yml
-title: $(echo ${GITHUB_REPOSITORY} | awk -F '/' '{print $1}')
+title: $(echo ${GITHUB_REPOSITORY} | awk -F '/' '{print $2}')
 author: pyiron
 logo: logo_dark.png
 
