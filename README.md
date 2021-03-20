@@ -47,8 +47,6 @@ The resulting files `export.csv` and `save.tar.gz` have been copied to the `calc
 Just like the pyiron resources folder this folder can include additional resources like links to special executables or additional parameter files. In this example the `resources` folder contains a special LAMMPS potential named `Si-quip-xml` which is required for the current notebook. 
 
 ### jupyterbook 
-The website for the repository is generated using jupyter book. It is configured with the config file `_config.yml` and additional images for the jupyterbook can be stored in `website/images` folder. In this example case the `website/images` folder contains the dark pyiron logo `website/images/logo_dark.png`. 
-
 The jupyterbook is build using the github action `.github/workflows/book.yml` and it is deployed to github pages using `.github/workflows/deploy.yml`. Both github actions internally use the conda environment defined in `.github/ci_support/environment.yml`. But there should be no need to modify these files, only the `_config.yml` has to be adjusted by the user. Example `_config.yml` file:
 
 ```
