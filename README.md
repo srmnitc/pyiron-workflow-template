@@ -45,11 +45,14 @@ The resulting files `export.csv` and `save.tar.gz` have been copied to the `pyir
 ### Additional pyiron resources 
 Just like the pyiron resources folder the `pyiron/resources` folder can include additional resources like links to special executables or parameter files. In this example the `pyiron/resources` folder contains a special LAMMPS potential named `Si-quip-xml` which is required for the example notebook `example.ipynb`. 
 
-### jupyterbook 
+### Jupyterbook 
 The jupyterbook is build using the github action `.github/workflows/book.yml` and it is deployed to github pages using `.github/workflows/deploy.yml`. Both github actions internally use the conda environment defined in `.github/ci_support/environment.yml`. But there should be no need to modify these files.
 
 ### mybinder
 Besides the conda environment in `environment.yml` the `.binder/postBuild` script is used to import the calculations stored in `pyiron/calculation` and install `NGLview` for both jupyter notebooks and jupyter lab. Finally the pyiron environment on mybinder is configured using the `.binder/.pyiron` file in this repository. Only the conda environment file `environment.yml` has to be updated by the user.
 
-### continous integration 
+### Continous integration 
 The rest of the files in the repository are used to test the environment. For continous integration the github actions are defined in `.github/workflows/notebooks.yml`. Again the conda environment file `environment.yml` is used to install all the dependencies, afterwards pyiron is configured in the test environment using `.github/ci_support/pyironconfig.py` and finally the notebooks are executed using `.github/ci_support/build_notebooks.sh`. Usually there is no need for the user to adjust any of these files other than the conda environment `environment.yml` file.
+
+### License
+pyiron and also the pyiron publication template are licensed under the BSD-3-Clause license which is included in the `LICENSE` file. In addition an `CODE_OF_CONDUCT.md` file is included to foster an open and welcoming environment.
