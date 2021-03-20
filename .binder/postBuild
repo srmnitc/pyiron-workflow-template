@@ -1,5 +1,5 @@
 # install environment 
-conda env update --name notebook --file environment.yml
+mamba env update --name notebook --file environment.yml
 
 # move pyiron config to home directory 
 mv .binder/.pyiron .
