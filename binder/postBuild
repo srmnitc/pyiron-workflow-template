@@ -1,23 +1,8 @@
 # move pyiron config to home directory 
 mv binder/.pyiron .
 
-# install dataset
-for ds in $(ls calculation/*.tar.gz); do 
-    cp ${ds} .
-    cp calculation/export.csv .
-    file=$(basename ${ds} .tar.gz)
-    python << EOF
-from pyiron_base import Project
-Project("calculation").unpack("${file}")
-EOF
-    rm $(basename ${ds})
-    rm export.csv
-done
+# import dataset
+bash .github/ci_support/import_dataset.sh
 
-# ngl view for jupyter
-jupyter nbextension install nglview --py --sys-prefix
-jupyter nbextension enable nglview --py --sys-prefix
-
-# ngl view for jupyter lab
-jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
-jupyter labextension install nglview-js-widgets --minimize=False
+# install nglview
+bash .github/ci_support/install_nglview.sh
