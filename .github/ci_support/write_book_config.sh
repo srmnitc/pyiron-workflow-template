@@ -1,5 +1,7 @@
-title: pyiron-publication-template
-author: Jan Janssen
+#!/bin/bash
+cat << EOF > _config.yml
+title: $(echo ${GITHUB_REPOSITORY} | awk -F '/' '{print $1}')
+author: pyiron
 logo: logo_dark.png
 
 execute:
@@ -9,7 +11,7 @@ html:
     extra_navbar              : Powered by <a href="https://pyiron.org">pyiron</a>
 
 repository:
-    url                       : https://github.com/pyiron/pyiron-publication-template
+    url                       : https://github.com/${GITHUB_REPOSITORY}
     path_to_book              : ""
 
 launch_buttons:
