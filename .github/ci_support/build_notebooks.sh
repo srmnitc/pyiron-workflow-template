@@ -2,8 +2,11 @@
 # pyiron config 
 python .github/ci_support/pyironconfig.py
 
-# install
-bash binder/postBuild
+# import dataset
+bash .github/ci_support/import_dataset.sh
+
+# install nglview
+bash .github/ci_support/install_nglview.sh
 
 # conda install papermill
 conda install -c conda-forge papermill
