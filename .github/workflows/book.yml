@@ -24,6 +24,7 @@ jobs:
       shell: bash -l {0}
       run: |
         echo "format: jb-book" > _toc.yml
+        echo "root: index" >> _toc.yml
         echo "chapters:" >> _toc.yml
         echo "- file: README.md" >> _toc.yml
         for f in $(find . -name '*.ipynb' | sort -n); do echo "- file: ${f}" >> _toc.yml; done
